@@ -30,6 +30,8 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class ActorSerializer(serializers.ModelSerializer):
+    full_name = serializers.ReadOnlyField()
+
     class Meta:
         model = Actor
         fields = "__all__"
@@ -95,6 +97,7 @@ class MovieSessionListSerializer(MovieSessionSerializer):
 
 
 class CinemaHallSerializer(serializers.ModelSerializer):
+    capacity = serializers.ReadOnlyField()
     class Meta:
         model = CinemaHall
         fields = "__all__"

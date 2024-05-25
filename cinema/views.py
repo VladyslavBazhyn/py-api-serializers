@@ -45,6 +45,12 @@ class MovieViewSet(viewsets.ModelViewSet):
 class MovieSessionViewSet(viewsets.ModelViewSet):
     queryset = MovieSession.objects.all()
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.action in ["list", "retrieve"]:
+            queryset = queryset.select_related()
+        return queryset
+
     def get_serializer_class(self):
         if self.action == "list":
             return MovieSessionListSerializer
